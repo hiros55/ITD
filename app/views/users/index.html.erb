@@ -1,0 +1,75 @@
+<% provide :title, 'introduction'%>
+<main>
+<div class="title">
+    <h2>自己紹介</h2>
+</div>
+<div class="line"></div>
+<div class="content">
+    <div class="content-body">
+        <div class="boxContainer">
+            <div class="box">
+                <%= image_tag 'image.jpg' %>
+            </div>
+            <div class="box purpose">
+                <div class="name">
+                    <%= @user.name %>
+                </div>
+                <div>
+                    <%= @user.purpose %>
+                </div>
+            </div>
+        </div>
+        <table class="intro-table" align="center">
+            <tr>
+                <th>生年月日</th>
+                <td><%= @user.birthday %></td>
+            </tr>
+            <tr>
+                <th>出身地</th>
+                <td><%= @user.birthplace %></td>
+            </tr>
+            <tr>
+                <th>出身高校</th>
+                <td><%= @user.carrier_high %></td>
+            </tr>
+            <tr>
+                <th>出身大学</th>
+                <td><%= @user.carrier_univ %></td>
+            </tr>
+            <tr>
+                <th>出身大学院</th>
+                <td><%= @user.carrier_univ_mas %></td>
+            </tr>
+            <tr>
+                <th>仕事</th>
+                <td><%= @user.carrier_work %></td>
+            </tr>
+            <tr>
+                <th>経験</th>
+                <td><%= @user.experience %></td>
+            </tr>
+        </table>
+        <div class="achievement">
+            <div class="achi-title">実績</div>
+            <div class="achi-content">
+            <table class="achi-table" align="center">
+                <tr>
+                    <th>期間</th>
+                    <th>名称</th>
+                    <th>種類</th>
+                </tr>
+                <% @achivements.each do |achivement| %>
+                    <tr>
+                        <td><%= achivement.startdate%> - <%= achivement.enddate%></td> 
+                        <td><%= achivement.name%></td>
+                        <td><%= achivement.achitype%></td>
+                    </tr>
+                <%end%>
+            </table>
+            </div>
+        </div>
+    </div>
+    <%= render 'sidebar' %>
+</div>
+</main>
+

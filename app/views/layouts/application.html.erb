@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ITD</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <%= link_to "TOP", root_path, class: "nav-item-top"%>
+      <nav class="nav">
+        <%= link_to "記事一覧", root_path, class: "nav-item"%>
+        <%= link_to "ブログ",articles_path, class: "nav-item"%>
+        <%= link_to "連絡", root_path, class: "nav-item"%>
+      </nav>
+    </header>
+    <%= yield %>
+  </body>
+</html>
