@@ -5,7 +5,11 @@ build:
     RAILS_ENV: development
 release:
   image: web
-  command:
-    - ls
+  # command:
+  #   - bundle install
+  #   - rails db:migrate
 run:
-  web: bundle exec rails s -b 0.0.0.0
+  web: 
+    - bundle install
+    - rails db:migrate
+    - bundle exec rails s -b 0.0.0.0
