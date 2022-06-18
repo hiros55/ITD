@@ -1,13 +1,13 @@
 build:
   docker:
     web: Dockerfile
+      command: ls -a
   config:
     RAILS_ENV: development
 release:
   image: web
-  # command:
-  #   - bundle install
-  #   - rails db:migrate
+  command:
+    - ls -a
 run:
   web: 
     command:
