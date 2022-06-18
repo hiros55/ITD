@@ -10,6 +10,7 @@ release:
   #   - rails db:migrate
 run:
   web: 
-    - bundle install
-    - rails db:migrate
-    - bundle exec rails s -b 0.0.0.0
+    command:
+      - bundle install
+      - rails db:migrate
+      - bundle exec rails s -b 0.0.0.0
