@@ -1,7 +1,6 @@
 build:
   docker:
     web: Dockerfile
-      command: ls -a
   config:
     RAILS_ENV: development
 release:
