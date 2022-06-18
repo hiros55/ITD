@@ -92,3 +92,7 @@ gem 'carrierwave-i18n', '~> 0.2.0'
 
 # pagination
 gem 'kaminari', git: 'https://github.com/kaminari/kaminari'
+
+gem 'net-imap'
+gem 'net-pop'
+gem 'net-smtp'
