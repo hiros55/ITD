@@ -1,0 +1,73 @@
+<div class="title">
+    <h2>自己紹介</h2>
+</div>
+<div class="line"></div>
+<div class="content">
+    <%= form_with model: @user,url: user_path(@user),method: :patch, local: true do |form| %>
+        <div class="content-body--edit">
+            <div class="boxContainer">
+                <div class="box">
+                    <%= image_tag(@user.avatar.url) if @user.avatar? %>
+                    <%= form.file_field :avatar, accept: 'image/png, image/jpeg, image/jpg, image/gif', class: 'd-flex align-items-en text-right ml-5 mt-3' %> 
+                </div>
+                <div class="box purpose">
+                    <div>
+                        <%= form.label "日本語"%>
+                        <%= form.text_field :name, size: "5x1",value: @user.name, class: "form-control mb-3" %>
+                        <%= form.label "英語"%>
+                        <%= form.text_field :name_en, size: "5x1",value: @user.name_en, class: "form-control mb-5" %>
+                    </div>
+                    <div>
+                        <%= form.label "日本語"%>
+                        <%= form.text_area :purpose, size: "80x10", value: @user.purpose, class: "form-control mb-3" %>
+                        <%= form.label "英語"%>
+                        <%= form.text_area :purpose_en, size: "80x10", value: @user.purpose_en, class: "form-control mb-5" %>
+                    </div>
+                </div>
+            </div>
+            <table class="intro-table" align="center">
+                <tr>
+                    <th>言語</th>
+                    <td>日本語</td>
+                    <td>英語</td>
+                </tr>
+                <tr>
+                    <th>生年月日</th>
+                    <td><%= form.date_field  :birthday ,class: "form-control", value: @user.birthday %></td>
+                </tr>
+                <tr>
+                    <th>出身地</th>
+                    <td><%= form.text_field :birthplace, size: "5x1",value: @user.birthplace, class: "form-control" %></td>
+                    <td><%= form.text_field :birthplace_en, size: "5x1",value: @user.birthplace_en, class: "form-control" %></td>
+                </tr>
+                <tr>
+                    <th>出身高校</th>
+                    <td><%= form.text_field :carrier_high, size: "5x1",value: @user.carrier_high, class: "form-control" %></td>
+                    <td><%= form.text_field :carrier_high_en, size: "5x1",value: @user.carrier_high_en, class: "form-control" %></td>
+                </tr>
+                <tr>
+                    <th>出身大学</th>
+                    <td><%= form.text_field :carrier_univ, size: "5x1",value: @user.carrier_univ, class: "form-control" %></td>
+                    <td><%= form.text_field :carrier_univ_en, size: "5x1",value: @user.carrier_univ_en, class: "form-control" %></td>
+                </tr>
+                <tr>
+                    <th>出身大学院</th>
+                    <td><%= form.text_field :carrier_univ_mas, size: "5x1",value: @user.carrier_univ_mas, class: "form-control" %></td>
+                    <td><%= form.text_field :carrier_univ_mas_en, size: "5x1",value: @user.carrier_univ_mas_en, class: "form-control" %></td>
+                </tr>
+                <tr>
+                    <th>仕事</th>
+                    <td><%= form.text_field :carrier_work, size: "5x1",value: @user.carrier_work, class: "form-control" %></td>
+                    <td><%= form.text_field :carrier_work_en, size: "5x1",value: @user.carrier_work_en, class: "form-control" %></td>
+                </tr>
+                <tr>
+                    <th>論文</th>
+                    <td><%= form.text_field :paper, size: "5x1",value: @user.paper, class: "form-control" %></td>
+                </tr>
+            </table>
+            <div class="text-right mr-5 mt-5">
+                <%= form.submit "登録", class: "btn btn-primary"%>
+            </div>
+        </div>
+    <%end%>
+</div>

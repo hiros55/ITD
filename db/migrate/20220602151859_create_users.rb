@@ -3,19 +3,26 @@ class CreateUsers < ActiveRecord::Migration[6.1]
     create_table :users do |t|
       t.string :name
       t.string :birthplace
-      t.string :purpose
+      t.text :purpose
       t.string :paper
-      t.string :carrier_jun
       t.string :carrier_high
       t.string :carrier_univ
       t.string :carrier_univ_mas
       t.string :carrier_work
-      t.string :experience
       t.date :birthday
-      t.string :insta
+      t.string :linkedin
       t.string :twitter
       t.string :skill
-      t.references :articles
+
+      # en
+      t.string :name_en
+      t.string :birthplace_en
+      t.text :purpose_en
+      t.string :carrier_high_en
+      t.string :carrier_univ_en
+      t.string :carrier_univ_mas_en
+      t.string :carrier_work_en
+      t.string :skill_en
 
       t.timestamps
     end

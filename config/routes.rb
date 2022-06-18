@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: "users#index"
-  resources :user
-  resources :articles
-  
+  root to: 'users#index'
+  devise_for :admin_users
+  scope '(:locale)', locale: /#{I18n.available_locales.map(&:to_s).join('|')}/ do
+    draw :root
+  end
+  draw :root
 end

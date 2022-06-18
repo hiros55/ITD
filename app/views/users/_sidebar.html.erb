@@ -1,10 +1,22 @@
 <div class="sidebar">
-    <p>掲載記事 & ブログ</p>
+    <p><%=t(".article") %></p>
+        <% if admin_user_signed_in? %>
+        <button class="btn btn-outline-primary float-right mr-5 mb-2" type="button" data-toggle="modal" data-target="#newArticleModal">追加</button> 
+        <%end%>
     <ul class="article-card">
-        <li class="card">a</li>
-        <li class="card">b</li>
-        <li class="card">c</li>
+        <% @pick_articles.each do |article|%>
+            <li class="card"><%= image_tag article.image.url  , class: "img_images" if article.image? %>
+            <div class="text-center">
+                <% if admin_user_signed_in? %>
+                    <button class="btn btn-outline-primary my-1" type="button" data-toggle="modal" data-target="#newArticleModal">編集</button> 
+                    <button class="btn btn-outline-primary my-1" type="button" data-toggle="modal" data-target="#newArticleModal">削除</button> 
+                <%end%>
+            </div></li><div class="pull-right"><%= article.title %></div>
+        <% end %>
     </ul>
+        <div class="text-right mr-5">
+            <a href="#"><%=t(".more")%></a>
+        </div>
     <div class="sidebar-sns">
         <p>SNS</p>
         <div class="sns">

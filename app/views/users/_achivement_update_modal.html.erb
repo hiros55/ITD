@@ -1,0 +1,39 @@
+<div class="modal fade" id="updateModal<%="#{i}"%>">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">編集</h4>
+            </div>
+            <div class="modal-body">
+                <div class='mt-lg-3 mb-5'>
+                    <div class="uform-exit_time">
+                        <div class='d-flex justify-content-center' >
+                        <%= form_with model: achivement, url: user_achivement_path(user_id: 1, id: achivement.id), local: true, method: :patch, class: 'form-wrapper' do |form|%>
+                        <div class="mb-3">
+                            <%= form.label "開始時期"%>
+                            <%= form.date_field :startdate,  value: achivement.startdate%>
+                        </div>
+                        <div class="mb-3">
+                            <%= form.label "終了時期"%>
+                            <%= form.date_field :enddate,  value: achivement.enddate%>
+                        </div>
+                        <div class="mb-3">
+                            <%= form.label "名称"%>
+                            <%= form.text_field :name, value: achivement.name%>
+                        </div>
+                        <div class="mb-3">
+                            <%= form.label "種類"%>
+                            <%= form.text_field :achitype, value: achivement.achitype%>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                <%= form.submit "編集する",:class=>"btn btn-primary" %> 
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

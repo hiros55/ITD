@@ -1,75 +1,138 @@
 <% provide :title, 'introduction'%>
 <main>
+<div class="text-right">
+</div>
 <div class="title">
-    <h2>自己紹介</h2>
+    <h2><%=t(".introduction") %></h2>
 </div>
 <div class="line"></div>
 <div class="content">
     <div class="content-body">
         <div class="boxContainer">
+            <% if admin_user_signed_in? %>
+                <div class="text-right mr-5">
+                    <%= link_to "編集", edit_user_path(@user), class: "btn btn-outline-primary"%>
+                </div>
+            <%end%>
             <div class="box">
-                <%= image_tag 'image.jpg' %>
+                <%= image_tag @user.avatar.url , class: "img_avatar" if @user.avatar? %>
             </div>
             <div class="box purpose">
                 <div class="name">
-                    <%= @user.name %>
+                    <% if locale == :en %>
+                        <%= @user.name_en %>
+                    <%else%>
+                        <%= @user.name %>
+                    <%end%>
                 </div>
                 <div>
-                    <%= @user.purpose %>
+                    <% if locale == :en %>
+                        <%= @user.purpose_en %>
+                    <%else%>
+                        <%= @user.purpose %>
+                    <%end%>
                 </div>
             </div>
         </div>
         <table class="intro-table" align="center">
             <tr>
-                <th>生年月日</th>
+                <th><%=t(".birthday") %></th>
                 <td><%= @user.birthday %></td>
             </tr>
             <tr>
-                <th>出身地</th>
-                <td><%= @user.birthplace %></td>
+                <th><%=t(".birthplace") %></th>
+                <td>
+                    <% if locale == :en %>
+                        <%= @user.birthplace_en %>
+                    <%else%>
+                        <%= @user.birthplace %>
+                    <%end%>
+                </td>
             </tr>
             <tr>
-                <th>出身高校</th>
-                <td><%= @user.carrier_high %></td>
+                <th><%=t(".carrier_high") %></th>
+                <td>
+                    <% if locale == :en %>
+                        <%= @user.carrier_high_en %>
+                    <%else%>
+                        <%= @user.carrier_high %>
+                    <%end%>
+                </td>
             </tr>
             <tr>
-                <th>出身大学</th>
-                <td><%= @user.carrier_univ %></td>
+                <th><%=t(".carrier_univ") %></th>
+                <td>
+                    <% if locale == :en %>
+                        <%= @user.carrier_univ_en %>
+                    <%else%>
+                        <%= @user.carrier_univ %>
+                    <%end%>
+                </td>
             </tr>
             <tr>
-                <th>出身大学院</th>
-                <td><%= @user.carrier_univ_mas %></td>
+                <th><%=t(".carrier_univ_mas") %></th>
+                <td>
+                    <% if locale == :en %>
+                        <%= @user.carrier_univ_mas_en %>
+                    <%else%>
+                        <%= @user.carrier_univ_mas %>
+                    <%end%>
+                </td>
             </tr>
             <tr>
-                <th>仕事</th>
-                <td><%= @user.carrier_work %></td>
+                <th><%=t(".carrier_work") %></th>
+                <td>
+                    <% if locale == :en %>
+                        <%= @user.carrier_work_en %>
+                    <%else%>
+                        <%= @user.carrier_work %>
+                    <%end%>
+                </td>
             </tr>
             <tr>
-                <th>経験</th>
-                <td><%= @user.experience %></td>
+                <th><%=t(".paper") %></th>
+                <td><%= @user.paper %></td>
             </tr>
         </table>
-        <div class="achievement">
-            <div class="achi-title">実績</div>
+        <div class="achivement">
+            <div class="achi-title"><%=t(".achivement") %></div>
+            <% if admin_user_signed_in? %>
+                <div class="text-right mr-5">
+                    <button class="btn btn-outline-primary m-3" type="button" data-toggle="modal" data-target="#newModal">追加</button> 
+                    <%= render partial: 'achivement_new_modal' %>
+                </div>
+            <%end%>
             <div class="achi-content">
             <table class="achi-table" align="center">
+            <% if @achivements&.count > 0%>
                 <tr>
-                    <th>期間</th>
-                    <th>名称</th>
-                    <th>種類</th>
+                    <th><%=t(".term") %></th>
+                    <th><%=t(".name") %></th>
+                    <th><%=t(".type") %></th>
+                    <% if admin_user_signed_in? %>
+                        <th>管理者操作</th>
+                    <%end%>
                 </tr>
-                <% @achivements.each do |achivement| %>
+            <%end%>
+                <% @achivements.each_with_index  do |achivement, i| %>
                     <tr>
                         <td><%= achivement.startdate%> - <%= achivement.enddate%></td> 
                         <td><%= achivement.name%></td>
                         <td><%= achivement.achitype%></td>
+                        <% if admin_user_signed_in? %>
+                            <td>
+                                <button class="btn btn-outline-primary m-3" type="button" data-toggle="modal" data-target="#updateModal<%="#{i}"%>">編集</button> 
+                                <%= button_to "削除", user_achivement_path(id: achivement.id, user_id: @user.id), { method: :delete, class: "btn btn-outline-primary mx-3" }%>
+                                <%= render partial: 'achivement_update_modal', locals: {i: i, achivement: achivement} %>
+                            </td>
+                        <%end%>
                     </tr>
                 <%end%>
             </table>
             </div>
         </div>
     </div>
-    <%= render 'sidebar' %>
+    <%= render partial: 'sidebar' %>
 </div>
 </main>
 

@@ -4,20 +4,35 @@
     <title>ITD</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </head>
 
   <body>
     <header>
       <%= link_to "TOP", root_path, class: "nav-item-top"%>
       <nav class="nav">
-        <%= link_to "記事一覧", root_path, class: "nav-item"%>
-        <%= link_to "ブログ",articles_path, class: "nav-item"%>
-        <%= link_to "連絡", root_path, class: "nav-item"%>
+        <%= link_to t(".articles"), articles_path, class: "nav-item"%>
+        <%= link_to t(".blog"),articles_path, class: "nav-item"%>
+        <%= link_to t(".contact"), root_path, class: "nav-item"%>
+        <% if admin_user_signed_in? %>
+          <%= link_to t(".logout"), destroy_admin_user_session_path, class: "nav-item"%>
+        <%else%>
+          <%= link_to t(".login"), new_admin_user_session_path, class: "nav-item"%>
+        <% end %>
       </nav>
     </header>
-    <%= yield %>
+    <div class="container contents">
+      <%= bootstrap_flash %>
+    </div>
+      <div class="text-right">
+        <%= link_to "English", request.path_info.to_s + "?locale=en", class: "mx-2 text-primary" %>
+        <%= link_to "日本語", request.path_info.to_s + "?locale=ja", class: "mx-2 text-primary" %>
+      </div>
+      <%= yield %>
   </body>
 </html>

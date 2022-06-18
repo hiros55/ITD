@@ -10,18 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_04_122615) do
+ActiveRecord::Schema.define(version: 2022_06_11_101525) do
 
   create_table "achivements", charset: "utf8mb4", force: :cascade do |t|
     t.date "startdate"
     t.date "enddate"
     t.string "name"
     t.string "achitype"
+    t.bigint "user_id"
+    t.string "name_en"
+    t.string "achitype_en"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_achivements_on_user_id"
   end
 
-  create_table "adminusers", charset: "utf8mb4", force: :cascade do |t|
+  create_table "admin_users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -29,44 +33,45 @@ ActiveRecord::Schema.define(version: 2022_06_04_122615) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_adminusers_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_adminusers_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "articles", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
-    t.string "text"
-    t.bigint "tags_id"
+    t.bigint "user_id"
+    t.boolean "is_highright"
+    t.string "title_en"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["tags_id"], name: "index_articles_on_tags_id"
-  end
-
-  create_table "tags", charset: "utf8mb4", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "birthplace"
-    t.string "purpose"
+    t.text "purpose"
     t.string "paper"
-    t.string "carrier_jun"
     t.string "carrier_high"
     t.string "carrier_univ"
     t.string "carrier_univ_mas"
     t.string "carrier_work"
-    t.string "experience"
     t.date "birthday"
-    t.string "insta"
+    t.string "linkedin"
     t.string "twitter"
     t.string "skill"
-    t.bigint "articles_id"
+    t.string "name_en"
+    t.string "birthplace_en"
+    t.text "purpose_en"
+    t.string "carrier_high_en"
+    t.string "carrier_univ_en"
+    t.string "carrier_univ_mas_en"
+    t.string "carrier_work_en"
+    t.string "skill_en"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "avatar"
-    t.index ["articles_id"], name: "index_users_on_articles_id"
   end
 
 end

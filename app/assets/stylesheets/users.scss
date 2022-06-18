@@ -20,6 +20,9 @@
 
 .content-body{
     width: 80%;
+    &--edit{
+        width: 100%;
+    }
 }
 
 
@@ -29,17 +32,29 @@
     overflow: hidden;
 }
 
+.edit_button{
+    color:#000000;
+    text-decoration: none;
+    float: right;
+    margin-right: 100px;
+    padding: 4px 6px;
+    border-radius: 5px;
+	border: 1px solid #000000;
+    background-color: #fffafa;
+}
+
 .box{
     float: left;
 }
   
 
-img {
+.img_avatar {
     border-radius: 50%;
     width: 200px; 
     height: 200px;
     object-fit: cover;
 }
+
 
 .name{
     margin-bottom: 10px;
@@ -75,7 +90,7 @@ img {
 
 
 //実績
-.achievement{
+.achivement{
     margin-top: 100px;
     margin-left: 15%;
     overflow: hidden;
