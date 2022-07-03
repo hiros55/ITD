@@ -6,7 +6,9 @@ build:
 release:
   image: web
   command:
-    - ls -a
+    - bundle install
+    - rails db:migrate
+    - bundle exec rails s -b 0.0.0.0
 run:
   web: 
     command:
